@@ -1,7 +1,7 @@
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("./service-workers.js")
+      .register("./service-worker.js")
       .then((reg) => {
         // registration worked
         console.log("Registration succeeded:" + reg);
@@ -18,6 +18,7 @@ let myChart;
 
 fetch("/api/transaction")
   .then((response) => {
+    console.log(response)
     return response.json();
   })
   .then((data) => {

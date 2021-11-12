@@ -24,7 +24,7 @@ request.onerror = function (event) {
 function saveRecord(data) {
   var transaction = db.transaction(["Pending_Transactions"], "readwrite");
   var objectStore = transaction.objectStore("Pending_Transactions");
-
+  objectStore.add(data);
   objectStore.onsuccess = function (event) {
     alert("Transactions have been added to your database.");
   };
@@ -39,7 +39,7 @@ function checkDatabase() {
     .transaction(["Pending_Transactions"], "readwrite")
     .objectStore("Pending_Transactions");
   const allData = transactionStore.getAll();
-
+  console.log(allData);
   allData.onsuccess = function () {
     if (allData.result.length > 0) {
       fetch("/api/transaction/bulk", {
